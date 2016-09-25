@@ -36,24 +36,27 @@ var MainInterface = React.createClass({
   render: function () {
     var filteredApts = this.state.data;
     filteredApts = filteredApts.map(function (item, index) {
+      console.log(this);
       return (
-        <li className='pet-info media-body'>
-          <div className='pet-head'>
-            <span className='pet-name'>{this.state.data[0].petName}</span>
-            <span className='apt-date pull-right'>{this.state.data[0].aptDate}</span>
+        <li className='pet-info media' key={index}>
+          <div className='pet-info media-body'>
+            <div className='pet-head'>
+              <span className='pet-name'>{this.state.data[index].petName}</span>
+              <span className='apt-date pull-right'>{this.state.data[index].aptDate}</span>
+            </div>
+            <div className='owner-name'>
+              <span className='label-item'>Owner: </span>
+              {this.state.data[index].ownerName}
+            </div>
+            <div className='apt-notes'>{this.state.data[index].aptNotes}</div>
           </div>
-          <div className='owner-name'>
-            <span className='label-item'>Owner: </span>
-            {this.state.data[0].ownerName}
-          </div>
-          <div className='apt-notes'>{this.state.data[0].aptNotes}</div>
         </li>
       )
-    })
+    }.bind(this))// binding this to the key
 
     return (
       <div className='interface'>
-        <ul className='item-list media-list'></ul>
+        <ul className='item-list media-list'>{ filteredApts }</ul>
       </div>
     ) // return
   } // render

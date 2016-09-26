@@ -140,6 +140,7 @@ footer .navbar-nav>li a {
 
 .item-list .apt-date {
   font-style: italic;
+  margin-right: 0.5em;
 }
 
 .item-list .apt-notes {

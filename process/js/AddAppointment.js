@@ -2,8 +2,21 @@ var React = require('react');
 
 var AddAppointment = React.createClass({
 
-  toggleAptDisplay: function() {
+  toggleAptDisplay: function () {
     this.props.handleToggle();
+  },
+
+  handleAdd: function (e) {
+    var tempItem = {
+      petName: this.refs.inputPetName.value,
+      ownerName: this.refs.inputOwnerName.value,
+      aptDate: this.refs.inputAptDate.value + ' ' +
+        this.refs.inputAptTime.value,
+      aptNotes: this.refs.inputAptNotes.value
+    }
+
+    e.preventDefault();
+    this.props.addApt(tempItem);
   },
 
   render: function () {
@@ -14,12 +27,14 @@ var AddAppointment = React.createClass({
 
     return (
       <div className="panel panel-primary">
-        <div className="panel-heading apt-addheading"onClick={this.toggleAptDisplay} >
+        <div className="panel-heading apt-addheading"
+             onClick={this.toggleAptDisplay} >
           <span className="glyphicon glyphicon-plus"></span>
             Add Appointment
         </div>
         <div className="panel-body" style={ displayAptBody }>
-          <htmlForm className="add-appointment htmlForm-horizontal">
+          <form className="add-appointment htmlForm-horizontal"
+                    onSubmit={ this.handleAdd }>
             <div className="htmlForm-group">
               <label className="col-sm-2 control-label" htmlFor="petName">Pet Name</label>
               <div className="col-sm-10">
@@ -63,7 +78,7 @@ var AddAppointment = React.createClass({
                 </button>
               </div>
             </div>
-          </htmlForm>
+          </form>
         </div>
       </div>
     )

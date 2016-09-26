@@ -36,7 +36,6 @@ var MainInterface = React.createClass({
   render: function () {
     var filteredApts = this.state.data;
     filteredApts = filteredApts.map(function (item, index) {
-      console.log(this);
       return (
         <li className='pet-info media' key={index}>
           <div className='pet-info media-body'>
@@ -52,7 +51,7 @@ var MainInterface = React.createClass({
           </div>
         </li>
       )
-    }.bind(this))// binding this to the key
+    }.bind(this))// filteredApts.map
 
     return (
       <div className='interface'>

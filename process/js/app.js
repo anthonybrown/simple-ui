@@ -1,6 +1,7 @@
-var React = require('react');
+var React    = require('react');
 var ReactDOM = require('react-dom');
-var AptList = require('./AptList')
+var AptList  = require('./AptList');
+var _        = require('lodash');
 
 var MainInterface = React.createClass({
   getInitialState: function () {
@@ -16,18 +17,28 @@ var MainInterface = React.createClass({
         myAppointments: tempApts
       }); //setState
     }.bind(this));
-  },
+  }, // componentDidMount method
 
   componentWillUnmount: function () {
     this.serverRequest.abort();
-  },
+  }, // componentWillUnmout method
+
+  deleteMessage: function (item) {
+    var allApts = this.state.myAppointments;
+    var newApts = _.without(allApts, item);
+    this.setState({
+      myAppointments: newApts
+    }); // setState
+  }, // deleteMessage method
 
   render: function () {
     var filteredApts = this.state.myAppointments;
     filteredApts = filteredApts.map(function (item, index) {
       return (
         <AptList key = {index}
-          singleItem = {item} />
+          singleItem = {item}
+          whichItem  = {item}
+          onDelete   = {this.deleteMessage}  />
       )
     }.bind(this))// filteredApts.map
 

@@ -4,20 +4,19 @@ var AddAppointment = React.createClass({
 
   toggleAptDisplay: function () {
     this.props.handleToggle();
-  },
+  }, //toggleAptDisplay method
 
   handleAdd: function (e) {
     var tempItem = {
-      petName: this.refs.inputPetName.value,
-      ownerName: this.refs.inputOwnerName.value,
-      aptDate: this.refs.inputAptDate.value + ' ' +
-        this.refs.inputAptTime.value,
-      aptNotes: this.refs.inputAptNotes.value
+      petName   : this.refs.inputPetName.value,
+      ownerName : this.refs.inputOwnerName.value,
+      aptDate   : this.refs.inputAptDate.value + ' ' + this.refs.inputAptTime.value,
+      aptNotes  : this.refs.inputAptNotes.value
     }
 
     e.preventDefault();
-    this.props.addApt(tempItem);
-  },
+    this.props.addApt(tempItem); //this will execute the prop in the main component
+  }, //handleAdd method
 
   render: function () {
 
